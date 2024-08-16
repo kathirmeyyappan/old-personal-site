@@ -1,6 +1,5 @@
 const profileImage = document.getElementById('profileImage');
 const notifBubble = document.getElementById('notifBubble')
-let notifDisplay = 'block'
 const body = document.getElementById("body")
 const title = document.getElementById("title")
 const overlay = document.querySelector('.overlay');
@@ -19,15 +18,24 @@ const pfps = [
 function startNotifTimer() {
     notifTimer = setTimeout(function() {
         if (!hasClickedProfile) {
-            notifBubble.style.display = notifDisplay;
+            notifBubble.style.display = 'block';
             notifBubble.classList.add("appear");
+
+            // remove typing bubble
+            setTimeout(function() {
+                console.log("here")
+                notifBubble.classList.add("disappear");
+                // add 'click me' bubble
+                setTimeout(function() {
+                    // notifBubble.remove('appear')
+                    notifBubble.src = 'images/click_here.png'
+                    notifBubble.classList.remove("disappear");
+                    notifBubble.classList.add("txtAppear");
+                }, 900);
+            }, 8000);
         }
     }, 2000);
-    // notifTimer = setTimeout(function() {
-    //     if (!hasClickedProfile) {
-    //         notifBubble.classList.add("notif-bulge");
-    //     }
-    // }, 3000);
+    notifBubble.style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -67,16 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 profileImage.src = pfps[c]; // next pfp
                 if (c == 0) {
                     title.textContent = "Kathir Meyyappan";
-                    notifDisplay = 'none';
                 } else {
                     title.textContent = '???';
                 }
             }
             overlay.style.opacity = '0'; // hide overlay
             profileImage.style.cursor = 'pointer';
-
-            hasClickedProfile = false;
-            startNotifTimer();
         }
     });
 
