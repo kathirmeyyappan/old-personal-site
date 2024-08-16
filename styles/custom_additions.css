@@ -41,7 +41,7 @@ body {
 }
 
 @keyframes appear {
-    0% { transform: scale(0);  }
+    0% { transform: scale(0); }
     100% { transform: scale(1); }
 }
 .appear {
@@ -49,6 +49,25 @@ body {
     width: 100px; 
     height: auto;
 }
+
+@keyframes disappear {
+    0% { transform: scale(1); }
+    100% { transform: scale(0); }
+}
+.disappear {
+    animation: disappear 1s ease-in;
+}
+
+@keyframes txtAppear {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+.txtAppear {
+    animation: appear 1s ease-in;
+    width: 130px; 
+    height: auto;
+}
+
 
 /* @keyframes notif-bulge {
     0% { transform: scale(1); }
