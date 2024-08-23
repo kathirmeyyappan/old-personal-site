@@ -32,9 +32,9 @@ function startNotifTimer() {
                     notifBubble.classList.remove("disappear");
                     notifBubble.classList.add("txtAppear");
                 }, 900);
-            }, 5000);
+            }, 3000);
         }
-    }, 1000);
+    }, 500);
     notifBubble.style.display = 'none';
 }
 
