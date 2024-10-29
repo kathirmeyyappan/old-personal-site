@@ -23,7 +23,6 @@ function startNotifTimer() {
 
             // remove typing bubble
             setTimeout(function() {
-                console.log("here")
                 notifBubble.classList.add("disappear");
                 // add 'click me' bubble
                 setTimeout(function() {
