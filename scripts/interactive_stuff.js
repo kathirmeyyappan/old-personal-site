@@ -108,3 +108,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     startNotifTimer();
 });
+
+// fit overlay in mobile screens
+function adjustOverlayContent() {
+    const overlayContent = document.querySelector('.overlay-content');
+    const overlay = document.querySelector('.overlay');
+    if (overlayContent.scrollHeight > window.innerHeight || overlayContent.scrollWidth > window.innerWidth) {
+        const scale = 0.9 * Math.min(window.innerHeight / overlayContent.scrollHeight, window.innerWidth / overlayContent.scrollWidth);
+        overlayContent.style.transform = `scale(${scale})`;
+    } else {
+        overlayContent.style.transform = 'scale(1)';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    adjustOverlayContent();
+});
+
+window.addEventListener('resize', () => {
+    adjustOverlayContent(); 
+});

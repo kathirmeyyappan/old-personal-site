@@ -181,6 +181,7 @@ body {
     display: flex; 
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     z-index: 1000;
     opacity: 0;
     transition: opacity var(--transition-time);
@@ -190,8 +191,11 @@ body {
 }
 
 .overlay-content {
-    max-width: 800px;
+    max-width: 800px; 
+    max-height: 90%;
     z-index: 1000;
+    transform-origin: center 0; /* Ensure scaling is from the center */
+    transition: transform 0.2s ease;
 }
 
 .profile-image-container {
