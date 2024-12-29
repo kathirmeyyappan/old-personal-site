@@ -37,6 +37,10 @@ function startNotifTimer() {
     notifBubble.style.display = 'none';
 }
 
+function closeMobileOverlay() {
+    document.querySelector('.mobile-overlay').style.display = 'none';
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     
     // preload images
