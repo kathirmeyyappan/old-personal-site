@@ -31,7 +31,7 @@ function startNotifTimer() {
                     notifBubble.classList.remove("disappear");
                     notifBubble.classList.add("txtAppear");
                 }, 900);
-            }, 3000);
+            }, 2000);
         }
     }, 500);
     notifBubble.style.display = 'none';
