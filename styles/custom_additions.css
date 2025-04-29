@@ -61,8 +61,14 @@ body {
     height: 200px;
     object-fit: cover;
     margin-bottom: 30px;
-    border: 10px solid #dddddd;
-    transition: transform 0.2s;
+    /* Modern glass-like border effect */
+    border: 10px solid rgba(221, 221, 221, 0.8);
+    backdrop-filter: blur(5px);
+    /* Smooth transition for hover effects */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Layered shadow for depth */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 .profile-image-container {
@@ -86,21 +92,62 @@ body {
 }
 
 @keyframes appear {
-    0% { transform: scale(0); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(0) translateY(20px);
+        opacity: 0;
+    }
+    40% {
+        transform: scale(1.2) translateY(-5px);
+        opacity: 0.7;
+    }
+    70% {
+        transform: scale(0.9) translateY(3px);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
 }
+
 .appear {
-    animation: appear 1s ease-in;
+    animation: appear 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards, pulse 2s ease-in-out infinite;
     width: 100px; 
     height: auto;
 }
 
-@keyframes disappear {
-    0% { transform: scale(1); }
-    100% { transform: scale(0); }
+/* Continuous gentle pulsing animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        /* Subtle expansion at midpoint */
+        transform: scale(1.05);
+    }
+    100% {
+        /* Return to original size to complete cycle */
+        transform: scale(1);
+    }
 }
+
+@keyframes disappear {
+    0% {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+    30% {
+        transform: scale(1.1) translateY(-5px);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(0) translateY(20px);
+        opacity: 0;
+    }
+}
+
 .disappear {
-    animation: disappear 1s ease-in;
+    animation: disappear 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 }
 
 @keyframes txtAppear {
@@ -126,6 +173,12 @@ body {
 
 .profile-image:hover {
     transform: scale(1.2);
+    /* Enhanced shadow and glow effect on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15),
+                0 3px 6px rgba(0, 0, 0, 0.12),
+                0 0 20px rgba(221, 221, 221, 0.4);
+    /* Keep original border color but add slight transparency for depth */
+    border: 10px solid rgba(221, 221, 221, 0.95);
 }
 
 .title-wrap {
@@ -147,6 +200,7 @@ body {
     justify-content: center;
 }
 
+/* Modern button styling with layered effects */
 .button {
     background-color: #dddddd; 
     border: none; 
@@ -154,20 +208,69 @@ body {
     color: black;
     font-size: 1em;
     cursor: pointer;
-    transition: background-color 0.3s; 
     padding: 10px; 
     margin: 5px 5px; 
+    /* Smooth transition for all properties using custom timing function */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Layered shadow for depth: distant soft shadow + close sharp shadow */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+    /* Subtle light border and glass-like effect */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
 }
 
+/* Radial gradient overlay for hover shine effect */
+.button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Creates a circular highlight that fades out from center */
+    background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Enhanced hover state with lift effect and deeper shadows */
 .button:hover {
-    background-color: #b0b0b0; 
+    background-color: #c8c8c8;
+    /* Slight lift and scale effect */
+    transform: translateY(-2px) scale(1.02);
+    /* Triple-layered shadow: deep ambient + crisp near + white glow */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15),
+                0 3px 6px rgba(0, 0, 0, 0.12),
+                0 0 15px rgba(255, 255, 255, 0.2);
+    /* Enhanced border visibility on hover */
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Press down effect when button is clicked */
+.button:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button icon styling */
 .button img {
     vertical-align: middle; 
     width: 50px;
     height: 50px;
     object-fit: contain;
+    /* Ensures icon stays above the shine effect */
+    position: relative;
+    z-index: 1;
+    /* Smooth icon scaling animation */
+    transition: transform 0.3s ease;
+}
+
+/* Scale up icon on button hover */
+.button:hover img {
+    transform: scale(1.1);
 }
 
 .overlay {
@@ -226,6 +329,7 @@ body {
     font-size: 1.4em;
 }
 
+/* Company logo styling in the overlay */
 img.inline {
     width: 2.3em;
     height: 2.3em;
@@ -233,6 +337,23 @@ img.inline {
     display: inline-block;
     border-radius: 8px;
     margin: 5px 0;
+    /* Modern glass effect and shadow */
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08);
+    /* Smooth transition for hover effects */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+img.inline:hover {
+    /* Lift and scale effect */
+    transform: translateY(-2px) scale(1.1);
+    /* Enhanced shadow and glow */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2),
+                0 3px 6px rgba(0, 0, 0, 0.15),
+                0 0 15px rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .inline {
