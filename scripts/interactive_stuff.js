@@ -37,6 +37,15 @@ function startNotifTimer() {
     notifBubble.style.display = 'none';
 }
 
+function startProfilePulseTimer() {
+    // Start profile image pulsing after 3 seconds
+    setTimeout(function() {
+        if (!hasClickedProfile) {
+            profileImage.classList.add("profile-pulse-notification");
+        }
+    }, 3000);
+}
+
 function closeMobileOverlay() {
     document.querySelector('.mobile-overlay').style.display = 'none';
 }
@@ -92,6 +101,9 @@ document.addEventListener('DOMContentLoaded', () => {
             hasClickedProfile = true;
             clearTimeout(notifTimer);
             notifBubble.style.display = "none";
+            
+            // Stop the profile pulsing notification
+            profileImage.classList.remove("profile-pulse-notification");
 
             // add collision for logos
             logos = document.getElementsByClassName('inline');
@@ -107,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     startNotifTimer();
+    startProfilePulseTimer();
 });
 
 // fit overlay in mobile screens
