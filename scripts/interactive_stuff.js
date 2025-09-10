@@ -1,5 +1,4 @@
 const profileImage = document.getElementById('profileImage');
-const notifBubble = document.getElementById('notifBubble')
 const body = document.getElementById("body")
 const title = document.getElementById("title")
 const overlay = document.querySelector('.overlay');
@@ -15,27 +14,6 @@ const pfps = [
     'images/subway-surfers.gif'
 ];
 
-function startNotifTimer() {
-    notifTimer = setTimeout(function() {
-        if (!hasClickedProfile) {
-            notifBubble.style.display = 'block';
-            notifBubble.classList.add("appear");
-
-            // remove typing bubble
-            setTimeout(function() {
-                notifBubble.classList.add("disappear");
-                // add 'click me' bubble
-                setTimeout(function() {
-                    // notifBubble.remove('appear')
-                    notifBubble.src = 'images/click_here.png'
-                    notifBubble.classList.remove("disappear");
-                    notifBubble.classList.add("txtAppear");
-                }, 900);
-            }, 2000);
-        }
-    }, 500);
-    notifBubble.style.display = 'none';
-}
 
 function startProfilePulseTimer() {
     // Start profile image pulsing after 3 seconds
@@ -43,7 +21,7 @@ function startProfilePulseTimer() {
         if (!hasClickedProfile) {
             profileImage.classList.add("profile-pulse-notification");
         }
-    }, 3000);
+    }, 1000);
 }
 
 function closeMobileOverlay() {
@@ -99,8 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     profileImage.addEventListener("click", () => {
         if (profileImage.style.cursor == 'pointer') {
             hasClickedProfile = true;
-            clearTimeout(notifTimer);
-            notifBubble.style.display = "none";
             
             // Stop the profile pulsing notification
             profileImage.classList.remove("profile-pulse-notification");
@@ -118,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    startNotifTimer();
     startProfilePulseTimer();
 });
 

@@ -75,46 +75,7 @@ body {
     position: relative;
 }
 
-:root {
-    --notif-right: 155px;
-    --notif-top: 10px;
-}
-.notification-bubble {
-    position: absolute;
-    top: var(--notif-top);
-    right: var(--notif-right);
-    z-index: 1002;
-    width: 0px; 
-    height: 0px;
-    transition: transform 0.2s;
-    transform-origin: center;
-    transition: width height 1s ease-in;
-}
 
-@keyframes appear {
-    0% {
-        transform: scale(0) translateY(20px);
-        opacity: 0;
-    }
-    40% {
-        transform: scale(1.2) translateY(-5px);
-        opacity: 0.7;
-    }
-    70% {
-        transform: scale(0.9) translateY(3px);
-        opacity: 0.9;
-    }
-    100% {
-        transform: scale(1) translateY(0);
-        opacity: 1;
-    }
-}
-
-.appear {
-    animation: appear 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards, pulse 2s ease-in-out infinite;
-    width: 100px; 
-    height: auto;
-}
 
 /* Continuous gentle pulsing animation */
 @keyframes pulse {
@@ -155,44 +116,9 @@ body {
     animation: profilePulse 1.5s ease-in-out infinite;
 }
 
-@keyframes disappear {
-    0% {
-        transform: scale(1) translateY(0);
-        opacity: 1;
-    }
-    30% {
-        transform: scale(1.1) translateY(-5px);
-        opacity: 0.7;
-    }
-    100% {
-        transform: scale(0) translateY(20px);
-        opacity: 0;
-    }
-}
-
-.disappear {
-    animation: disappear 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-}
-
-@keyframes txtAppear {
-    0% { transform: scale(0); }
-    100% { transform: scale(1); }
-}
-.txtAppear {
-    animation: appear 1s ease-in;
-    width: 130px; 
-    height: auto;
-}
 
 
-/* @keyframes notif-bulge {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1); }
-}
-.notif-bulge {
-    animation: notif-bulge 2s infinite;
-} */
+
 
 
 .profile-image:hover {
