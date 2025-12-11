@@ -359,3 +359,8 @@ img.inline:hover {
 .inline {
     pointer-events: none;
 }
+
+/* Rounded edges for kathir_meyyappan images */
+#kathir_meyyappan {
+    border-radius: 12px;
+}

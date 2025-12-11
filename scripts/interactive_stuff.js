@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (c == 0) {
                     title.textContent = "Kathir Meyyappan";
                 } else {
-                    title.textContent = '???';
+                    title.textContent = 'Kathir Meyyappan'; // this is what replaces the original text after clicking on pfp once
                 }
             }
             overlay.style.opacity = '0'; // hide overlay
